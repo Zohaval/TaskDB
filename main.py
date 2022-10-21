@@ -1,18 +1,35 @@
 import os
-import zipfile
 import shutil
 from os import path
 from tkinter import filedialog
+import pathlib
+from pathlib import Path
 
 
-path_save = filedialog.askdirectory(initialdir='C:\\Users\\zohav\\OneDrive\\Desktop')
+path_save = filedialog.askdirectory(initialdir=path)
 
-file_source = 'C:\\Users\\zohav\\OneDrive\\Desktop\\Start\\'
+FILE_SOURCE = 'C:\\Users\\zohav\\OneDrive\\Desktop\\Start\\'
 file_destination = path_save
-get_files = os.listdir(file_source)
+get_files = os.listdir(FILE_SOURCE)
 
-for g in get_files:
-    shutil.move(file_source + g, file_destination)
+for file_name in get_files:
+    if file_name[-4:] == ".xml":
+        shutil.move(FILE_SOURCE + file_name, file_destination)
+
+        # file_path = pathlib.Path.home() (полезная штука, надо разобраться с ней)
+        # file_path = pathlib.Path.cwd() (полезная штука, надо разобраться с ней)
+
+        path = Path(path_save, file_name)
+        print(str(path))
+
+
+
+
+
+
+
+
+
 
 
 
@@ -21,6 +38,8 @@ for g in get_files:
 
 
 # разархировка файла
+
+# import zipfile
 # file_zip = zipfile.ZipFile('C:\\Users\\zohav\\OneDrive\\Desktop\\SS\\DD.zip')
 # file_zip.extractall('C:\\Users\\zohav\\OneDrive\\Desktop\\SS\\')
 # file_zip.close()
