@@ -9,8 +9,6 @@ class DBAssistant:
             self.cursor = cursor
             self.sql_executor(""" CREATE TABLE IF NOT EXISTS kbk_info(KbkId INTEGER, Kbk TEXT, CreditSum INTEGER) """)
             self.sql_executor(""" CREATE TABLE IF NOT EXISTS date_credits(KbkId INTEGER, Credit INTEGER, DateCredit TEXT) """)
-            self.clear_table('kbk_info')
-            self.clear_table('date_credits')
 
     def sql_executor(self, query):
         self.cursor.execute(query)
@@ -30,7 +28,10 @@ class DBAssistant:
         query = f""" DELETE FROM {table_name} """
         self.sql_executor(query)
 
+    def clear_db(self):
+        self.clear_table('kbk_info')
+        self.clear_table('date_credits')
+
     def get_credit_information(self, kbk_info):
         query = f""" SELECT Credit, DateCredit FROM date_credits WHERE KbkId = {kbk_info} """
         return self.sql_executor(query)
-
