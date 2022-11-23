@@ -12,12 +12,12 @@ document_finder = DocumentFinder()
 file_path = document_finder.find_xml()
 
 parser_xml = ParserXml()
-kbk_id = parser_xml.parse(file_path)
+all_kbk = parser_xml.parse(file_path)
 
-kbk_info = int(input())
+desired_kbk = input()
 
-if kbk_info <= kbk_id:
-    data = db_assistant.get_credit_information(kbk_info)
+if desired_kbk in all_kbk:
+    data = db_assistant.get_credit_information(desired_kbk)
     list_len = len(data)
     if list_len != 0:
         print('\n'.join(map(str, data)))
