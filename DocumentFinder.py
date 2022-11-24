@@ -9,8 +9,12 @@ class DocumentFinder:
         file_destination = filedialog.askdirectory()
         file_source = 'C:\\Users\\zohav\\OneDrive\\Desktop\\Start\\'
         get_files = os.listdir(file_source)
+        path_to_file = []
         for file_name in get_files:
             if file_name[-4:] == ".xml":
-                shutil.move(file_source + file_name, file_destination)
-                path_to_file = Path(file_destination, file_name)
-                return path_to_file
+                # shutil.move(file_source + file_name, file_destination)
+                shutil.copy(file_source + file_name, file_destination)   # упращение
+                path_connector = Path(file_destination, file_name)
+                pop = str(path_connector.resolve())
+                path_to_file.append(pop)
+        return path_to_file

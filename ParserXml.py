@@ -8,7 +8,7 @@ class ParserXml:
         self.db_assistant = DBAssistant()
 
     def parse(self, file_path):
-        tree: ElementTree = ET.parse(file_path)
+        tree = ET.parse(file_path)
         root = tree.getroot()
         all_kbk = []
         for payment in root.iter('ВыпОперРСБ'):

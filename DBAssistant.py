@@ -32,6 +32,10 @@ class DBAssistant:
         self.clear_table('kbk_info')
         self.clear_table('date_credits')
 
-    def get_credit_information(self, desired_kbk):
+    def select_data(self, desired_kbk):
         query = f""" SELECT Credit, DateCredit FROM date_credits WHERE Kbk = '{desired_kbk}' """
+        return self.sql_executor(query)
+
+    def we_contains_kbk(self, desired_kbk):
+        query = f""" SELECT Kbk FROM kbk_info WHERE Kbk = '{desired_kbk}' """
         return self.sql_executor(query)
