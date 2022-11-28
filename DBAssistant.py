@@ -36,6 +36,8 @@ class DBAssistant:
         query = f""" SELECT Credit, DateCredit FROM date_credits WHERE Kbk = '{desired_kbk}' """
         return self.sql_executor(query)
 
-    def we_contains_kbk(self, desired_kbk):
+    def is_new_kbk(self, desired_kbk):
         query = f""" SELECT Kbk FROM kbk_info WHERE Kbk = '{desired_kbk}' """
-        return self.sql_executor(query)
+        test = self.sql_executor(query)
+        answer = len(test) == 0
+        return answer
